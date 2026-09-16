@@ -6,6 +6,7 @@ import org.acme.models.dao.Customer;
 import org.acme.models.dao.Order;
 import org.acme.models.dao.OrderStatus;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @ApplicationScoped
@@ -15,7 +16,7 @@ public class OrderRepository implements PanacheRepository<Order> {
         return list("customer", customer);
     }
 
-    public List<Order> listByStatus(OrderStatus status) {
-        return list("status", status);
+    public List<Order> listDueForDelivery(LocalDateTime now) {
+        return list("status = ?1 and estimatedArrivalAt <= ?2", OrderStatus.IN_TRANSIT, now);
     }
 }
