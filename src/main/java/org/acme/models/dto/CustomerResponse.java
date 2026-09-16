@@ -2,9 +2,9 @@ package org.acme.models.dto;
 
 import java.math.BigDecimal;
 
-public class CustomerResponse {
-    public String email;
-    public String role;
-    public BigDecimal balance;
-    public Integer paperclipStock;
-}
+public record CustomerResponse(
+    String email,
+    String role,
+    BigDecimal balance,
+    Integer paperclipStock
+) {}
