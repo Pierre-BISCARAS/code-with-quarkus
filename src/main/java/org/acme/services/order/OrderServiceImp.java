@@ -3,6 +3,7 @@ package org.acme.services.order;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import jakarta.ws.rs.BadRequestException;
 import jakarta.ws.rs.ForbiddenException;
 import jakarta.ws.rs.NotFoundException;
 import jakarta.ws.rs.WebApplicationException;
@@ -46,6 +47,10 @@ public class OrderServiceImp implements OrderService {
     @Override
     @Transactional
     public Order placeOrder(String customerEmail, OrderRequest request) {
+        if (request.quantity() == null || request.quantity() <= 0) {
+            throw new BadRequestException("quantity must be positive");
+        }
+
         Customer customer = customerRepository.findByEmail(customerEmail);
 
         ClipperStoreResponse store;

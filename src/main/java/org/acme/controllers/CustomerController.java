@@ -3,6 +3,7 @@ package org.acme.controllers;
 import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.ForbiddenException;
 import jakarta.ws.rs.GET;
@@ -35,7 +36,7 @@ public class CustomerController {
     @PermitAll
     @Path("/auth/register")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response register(CustomerRequest request) {
+    public Response register(@Valid CustomerRequest request) {
         service.register(request);
         return Response.status(Response.Status.CREATED).build();
     }

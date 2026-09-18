@@ -1,5 +1,6 @@
 package org.acme.clients;
 
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -9,6 +10,7 @@ import org.acme.models.dto.clipper.ClipperDistanceResponse;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 @RegisterRestClient(configKey = "clipper-api")
+@ApplicationScoped
 @Path("/api/geo")
 @Produces(MediaType.APPLICATION_JSON)
 public interface ClipperGeoClient {
