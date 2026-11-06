@@ -1,0 +1,9 @@
+services:
+  database:
+    image: docker.io/library/mysql:latest
+    container_name: database
+    environment:
+      MYSQL_ROOT_PASSWORD: '1234Azerty'
+      MYSQL_DATABASE: 'example'
+    ports:
+      - "3306:3306"

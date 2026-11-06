@@ -1,0 +1,14 @@
+services:
+  database:
+    image: mysql:8.4
+    container_name: td3-database
+    environment:
+      MYSQL_ROOT_PASSWORD: '1234Azerty'
+      MYSQL_DATABASE: 'td3'
+    ports:
+      - "3306:3306"
+    volumes:
+      - td3-mysql-data:/var/lib/mysql
+
+volumes:
+  td3-mysql-data:
